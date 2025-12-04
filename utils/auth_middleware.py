@@ -9,7 +9,7 @@ def token_required(allowed_roles=None):
 
             token = None
 
-            # ✅ 1. Try header
+            #  Try header
             auth_header = request.headers.get("Authorization")
             if auth_header:
                 try:
@@ -17,7 +17,7 @@ def token_required(allowed_roles=None):
                 except:
                     pass
 
-            # ✅ 2. Try query param for PDFs
+            #  Try query param for PDFs
             if not token:
                 token = request.args.get("token")
 
@@ -29,7 +29,7 @@ def token_required(allowed_roles=None):
             except:
                 return jsonify({"error": "Invalid token"}), 401
 
-            # ✅ Role check
+            # Role check
             if allowed_roles and data["role"] not in allowed_roles:
                 return jsonify({"error": "Access denied"}), 403
 

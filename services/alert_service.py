@@ -13,7 +13,7 @@ class AlertService:
             if not product:
                 return
 
-            # 🔹 Find ANY existing alert for this product
+            # Find ANY existing alert for this product
             alert = session.query(Alert).filter_by(
                 product_id=product.product_id,
                 alert_type="LOW_STOCK"

@@ -198,12 +198,10 @@
                     </tr>
                 </thead>
                 <tbody id="reports-list">
-                    <!-- Reports will be loaded here -->
                 </tbody>
             </table>
         </div>
 
-        <!-- Empty State -->
         <div id="empty-reports" class="empty-state">
             <div style="font-size: 48px; margin-bottom: 15px;">📄</div>
             <h3>No Reports Yet</h3>
@@ -234,11 +232,10 @@
     </div>
   </div>
 
-  <!-- Your existing scripts -->
   <script src="js/ui.js"></script>
   <script src="js/api.js"></script>
   
-  <!-- Reports JavaScript -->
+
   <script>
     // DOM Elements
     let currentReports = [];
@@ -272,7 +269,6 @@
         document.getElementById('cancel-report-btn').addEventListener('click', closeGenerateModal);
         document.getElementById('confirm-generate-btn').addEventListener('click', generateReport);
         
-        // Close modal when clicking outside
         document.getElementById('report-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeGenerateModal();
@@ -309,13 +305,10 @@
         showLoading(true);
         
         try {
-            // Use your existing api.js function or fetch directly
             let data;
             if (typeof apiGet === 'function') {
-                // If you have api.js with apiGet function
                 data = await apiGet('/reports/list');
             } else {
-                // Fallback to fetch
                 const response = await fetch('/reports/list');
                 data = await response.json();
             }
@@ -390,7 +383,6 @@
         }
         
         try {
-            // Show loading on button
             generateBtn.textContent = 'Generating...';
             generateBtn.disabled = true;
             
@@ -398,10 +390,8 @@
             
             let result;
             if (typeof apiPost === 'function') {
-                // Use your existing api.js
                 result = await apiPost('/reports/generate', { date: dateInput });
             } else {
-                // Fallback to fetch
                 const response = await fetch('/reports/generate', {
                     method: 'POST',
                     headers: {
@@ -415,15 +405,15 @@
             console.log('Generate response:', result);
             
             if (result.success) {
-                alert('✅ Report generated successfully!\n\nFilename: ' + result.report.filename + '\nDate: ' + result.report.date);
+                alert(' Report generated successfully!\n\nFilename: ' + result.report.filename + '\nDate: ' + result.report.date);
                 closeGenerateModal();
                 loadReports(); // Refresh the list
             } else {
-                alert('❌ Error: ' + result.error);
+                alert(' Error: ' + result.error);
             }
         } catch (error) {
             console.error('Generate report error:', error);
-            alert('❌ Network error: ' + error.message);
+            alert(' Network error: ' + error.message);
         } finally {
             // Reset button
             generateBtn.textContent = originalText;
@@ -450,14 +440,14 @@
             }
             
             if (result.success) {
-                alert('✅ Monthly report generation started. Check back in a moment.');
+                alert(' Monthly report generation started. Check back in a moment.');
                 // Refresh after 2 seconds
                 setTimeout(loadReports, 2000);
             } else {
-                alert('❌ Error: ' + result.error);
+                alert(' Error: ' + result.error);
             }
         } catch (error) {
-            alert('❌ Network error: ' + error.message);
+            alert(' Network error: ' + error.message);
         } finally {
             showLoading(false);
         }
@@ -505,10 +495,10 @@
             link.click();
             document.body.removeChild(link);
             
-            alert('✅ Inventory exported to CSV successfully!');
+            alert('Inventory exported to CSV successfully!');
             
         } catch (error) {
-            alert('❌ Error exporting to CSV: ' + error.message);
+            alert('Error exporting to CSV: ' + error.message);
         } finally {
             showLoading(false);
         }
@@ -541,13 +531,13 @@
             }
             
             if (result.success) {
-                alert('✅ Report deleted successfully');
+                alert(' Report deleted successfully');
                 loadReports();
             } else {
-                alert('❌ Error: ' + result.error);
+                alert(' Error: ' + result.error);
             }
         } catch (error) {
-            alert('❌ Network error: ' + error.message);
+            alert(' Network error: ' + error.message);
         }
     }
   </script>

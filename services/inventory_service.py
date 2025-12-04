@@ -129,7 +129,6 @@ class InventoryService:
 
     # ------------------------------------------------------------
     # UPDATE PRODUCT
-    # Uses ONLY existing categories — no duplicates
     # ------------------------------------------------------------
     @staticmethod
     def update_product(product_id, data, user_id):
@@ -146,7 +145,7 @@ class InventoryService:
             session.close()
             return {"error": "Product not found"}
 
-        # ---- Handle category safely ----
+        # ---- Handle category ----
         if "category" in data:
             category_name = data["category"]
 
@@ -177,13 +176,13 @@ class InventoryService:
             except:
                 pass
 
-        # ---- Meta ----
         product.updated_at = datetime.utcnow()
         product.updated_by_user_id = user_id
 
         session.commit()
 
         # ---- Alert check ----
+
         AlertService.check_low_stock(product.product_id)
 
         session.close()

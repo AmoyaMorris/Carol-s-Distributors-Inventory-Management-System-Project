@@ -104,7 +104,7 @@ async function addProduct(){
 
         showFormError(res.error);
 
-        // highlight likely problem fields
+        // highlights problem fields
         if (!data.name) markError("p-name");
         if (isNaN(data.price)) markError("p-price");
         if (isNaN(data.quantity)) markError("p-qty");
@@ -226,7 +226,6 @@ async function openSelectProductForDelete() {
     document.getElementById("modal-title").innerText = "Select Product to Remove";
     document.getElementById("modal-body").innerHTML = dropdown;
 
-    // CLEAR OLD HANDLERS
     document.getElementById("modal-save-btn").onclick = null;
 
     document.getElementById("modal-save-btn").onclick = () => {
@@ -247,7 +246,6 @@ function openDeleteProductModal(id) {
     document.getElementById("modal-body").innerHTML =
         `<p>Are you sure you want to delete this product?</p>`;
 
-    // CLEAR OLD HANDLERS
     document.getElementById("modal-save-btn").onclick = null;
 
     document.getElementById("modal-save-btn").onclick = () => deleteProduct(id);

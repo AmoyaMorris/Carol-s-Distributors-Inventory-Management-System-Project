@@ -42,5 +42,5 @@ def view_receipt(filename):
         directory=RECEIPTS_DIR,
         path=filename,
         mimetype="application/pdf",
-        as_attachment=download  # false = open inline, true = download
+        as_attachment=download 
     )

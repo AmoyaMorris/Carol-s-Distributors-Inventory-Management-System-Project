@@ -2,12 +2,9 @@ from fpdf import FPDF
 import os
 
 # -------------------------------------------
-# SAFE TEXT CLEANER for FPDF (NO UNICODE)
+# SAFE TEXT CLEANER for FPDF 
 # -------------------------------------------
 def sanitize(text):
-    """
-    Removes any characters FPDF cannot render (latin-1 only).
-    """
     return str(text).encode("latin-1", "ignore").decode("latin-1")
 
 

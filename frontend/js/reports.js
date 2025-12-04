@@ -1,4 +1,3 @@
-// reports.js
 document.addEventListener("DOMContentLoaded", function() {
     loadReports();
     setupModalListeners();
@@ -99,7 +98,6 @@ function viewReport(filename) {
 function downloadReport(filename) {
     console.log("Downloading report:", filename);
     
-    // Method 1: Direct download link
     const downloadLink = document.createElement('a');
     downloadLink.href = `/reports/download/${filename}?download=true`;
     downloadLink.download = filename;
@@ -107,13 +105,11 @@ function downloadReport(filename) {
     downloadLink.click();
     document.body.removeChild(downloadLink);
     
-    // Method 2: Alternative approach
-    // window.location.href = `/reports/download/${filename}?download=true`;
+    
 }
 
 async function generateReport() {
     try {
-        // Get date from modal input or use today
         const dateInput = document.getElementById("report-date");
         const reportDate = dateInput ? dateInput.value : new Date().toISOString().split("T")[0];
         

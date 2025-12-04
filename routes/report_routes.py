@@ -82,7 +82,6 @@ def download_report(filename):
             print("PDF NOT FOUND:", filepath)
             return jsonify({"error": "Report not found"}), 404
 
-        # Download vs view behavior
         download = request.args.get("download") == "true"
 
         return send_from_directory(

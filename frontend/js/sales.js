@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 //---------------------------------------------
-// SEARCH PRODUCTS (LIVE FILTER)
+// SEARCH PRODUCTS 
 //---------------------------------------------
 function searchProducts() {
     let q = document.getElementById("search-bar").value.toLowerCase();
@@ -128,7 +128,7 @@ function checkThresholdAlerts(products) {
 
     if (low.length > 0) {
         let msg = low.map(p => `${p.name} (Qty: ${p.qty})`).join("\n");
-        alert("⚠️ LOW STOCK ALERT:\n\n" + msg);
+        alert(" LOW STOCK ALERT:\n\n" + msg);
     }
 }
 

@@ -53,10 +53,10 @@ def serve_static(path):
 # INIT ALERT CHECK
 # -------------------------
 with app.app_context():
-    # ✅ Start scheduler SAFELY here — only once
+    # Start scheduler here
     init_report_scheduler()
 
-    # ✅ Run initial stock check
+    # Run initial stock check
     AlertService.check_all_products()
 # -------------------------
 if __name__ == "__main__":

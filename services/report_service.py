@@ -25,7 +25,7 @@ class ReportService:
                     "total_value": float(p.current_quantity * p.price) if p.price else 0.0
                 }
                 
-                # Handle category safely
+                # Handle category
                 if p.category:
                     item["category"] = p.category.name
                 else:

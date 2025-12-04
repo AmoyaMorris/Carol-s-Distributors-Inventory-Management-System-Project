@@ -18,7 +18,6 @@ def get_alerts():
             "product": a.product.name if a.product else "Unknown",
             "msg": a.message,
             "status": a.status,
-            # use your timestamp field here; change if name is different
             "created_at": (
                 a.created_at.strftime("%Y-%m-%d %H:%M")
                 if getattr(a, "created_at", None) else ""
@@ -38,7 +37,6 @@ def delete_alert(alert_id):
         session.close()
         return jsonify({"error": "Alert not found"}), 404
 
-    # optional: only allow deleting resolved alerts
     if alert.status != "RESOLVED":
         session.close()
         return jsonify({"error": "Only resolved alerts can be deleted"}), 400
